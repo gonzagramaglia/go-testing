@@ -13,7 +13,7 @@ const (
 
 func Hello(name, language string) string {
 	if name == "" {
-		name = "Worl"
+		name = "World"
 	}
 	return greetingPrefix(language) + name
 }
