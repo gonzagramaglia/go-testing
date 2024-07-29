@@ -2,24 +2,53 @@ package kata
 
 import "strings"
 
-func ConvertToRoman(arabic int) string {
+type RomanNumeral struct {
+	Value  uint16
+	Symbol string
+}
+
+var allRomanNumerals = []RomanNumeral{
+	{1000, "M"},
+	{900, "CM"},
+	{500, "D"},
+	{400, "CD"},
+	{100, "C"},
+	{90, "XC"},
+	{50, "L"},
+	{40, "XL"},
+	{30, "XXX"},
+	{20, "XX"},
+	{10, "X"},
+	{9, "IX"},
+	{5, "V"},
+	{4, "IV"},
+	{2, "II"},
+	{1, "I"},
+}
+
+func ConvertToRoman(arabic uint16) string {
 
 	var result strings.Builder
 
-	for i := arabic; i > 0; i-- {
-		if result.String() == "IV" {
-			writeRomanNumbers(&result, "V")
-		} else if result.String() == "III" {
-			writeRomanNumbers(&result, "IV")
-		} else {
-			result.WriteString("I")
+	for _, numeral := range allRomanNumerals {
+		for arabic >= numeral.Value {
+			result.WriteString(numeral.Symbol)
+			arabic -= numeral.Value
 		}
 	}
 
 	return result.String()
 }
 
-func writeRomanNumbers(r *strings.Builder, stringToWrite string) {
-	r.Reset()
-	r.WriteString(stringToWrite)
+func ConvertToArabic(roman string) uint16 {
+	var arabic uint16 = 0
+
+	for _, numeral := range allRomanNumerals {
+		for strings.HasPrefix(roman, numeral.Symbol) {
+			arabic += numeral.Value
+			roman = strings.TrimPrefix(roman, numeral.Symbol)
+		}
+	}
+
+	return arabic
 }
