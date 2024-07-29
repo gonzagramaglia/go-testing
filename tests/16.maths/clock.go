@@ -6,7 +6,7 @@ import (
 )
 
 func secondsInRadians(t time.Time) float64 {
-	return math.Pi
+	return float64(t.Second()) * (math.Pi / 30)
 }
 
 // A Point represents a two dimensional Cartesian coordinate
