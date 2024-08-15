@@ -27,3 +27,7 @@ This is an advantageous trait because it means the tests exercise the system the
 ##### Lead time?
 Lead time refers to how long it takes from a commit being merged into your main branch to it being deployed in production. This number can vary from weeks and even months for some teams to a matter of minutes. 
 A balanced testing approach is required for a reliable system with excellent lead time, and this is usually described in terms of the [Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html).
+
+
+
+It's important to note again, Go has all the tools you need to write acceptance tests out of the box. You don't need a special framework to build acceptance tests.
